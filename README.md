@@ -5,6 +5,8 @@ Benchmark repository for different React Native styling libraries.
 iPhone 17 Pro running iOS 26.0 in Release mode.
 Result after opening the app for the second time (cached by the OS).
 
+All benchmarks must be run in **Release** mode. The `android` scripts are pinned to the release variant (e.g. `react-native run-android --mode=release`), and the shared iOS schemes launch with the `Release` build configuration.
+
 Uniwind, NativeWind 4 and NativeWind 5 use the exact same classNames.
 
 It’s difficult to directly compare Unistyles, Uniwind, and NativeWind to StyleSheet, as it has no features, it only serves as a baseline for performance.
