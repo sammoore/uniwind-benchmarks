@@ -1,0 +1,26 @@
+diff --git a/dist/metro/expo.js b/dist/metro/expo.js
+index aef75e4f949534740d5411f58b0d4fb293e3e867..abf5db589b2c4fe4e0af4114f05ce5122ae47c2c 100644
+--- a/dist/metro/expo.js
++++ b/dist/metro/expo.js
+@@ -5,14 +5,16 @@ function expoColorSchemeWarning() {
+     if (!isExpo()) {
+         return;
+     }
+-    const config = require("@expo/config").getConfig(process.cwd());
+-    if (config && config.exp.userInterfaceStyle === undefined) {
+-        console.warn(`Your Expo app does not have a 'userInterfaceStyle' setting which can to confusing color scheme behavior. Please set a 'userInterfaceStyle' to remove this warning (recommended 'automatic'). https://docs.expo.dev/develop/user-interface/color-themes`);
+-    }
++    try {
++        const config = require("@expo/config").getConfig(process.cwd());
++        if (config && config.exp.userInterfaceStyle === undefined) {
++            console.warn(`Your Expo app does not have a 'userInterfaceStyle' setting which can to confusing color scheme behavior. Please set a 'userInterfaceStyle' to remove this warning (recommended 'automatic'). https://docs.expo.dev/develop/user-interface/color-themes`);
++        }
++    } catch {}
+ }
+ function isExpo() {
+     try {
+-        require("@expo/config");
++        require.resolve("@expo/config", { paths: [process.cwd()] });
+         return true;
+     }
+     catch {
