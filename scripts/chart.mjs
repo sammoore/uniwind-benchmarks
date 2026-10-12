@@ -135,6 +135,7 @@ const LIBRARY_COLORS = {
   Unistyles: '#EBA23F',
   Uniwind: '#6366F1',
   NativeWind: '#E05252',
+  Tamagui: '#F2C744',
 }
 const FASTER = '#3E9F4A'
 const SLOWER = '#D9473F'

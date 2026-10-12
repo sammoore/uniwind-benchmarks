@@ -26,7 +26,7 @@ const SAMPLE = {
   nativewind4: { ios: [141.9, 189.3], android: [212.8] },
   nativewind5: { ios: [168.3, 231.7], android: [246.1] },
   'pro-1.0.1': { ios: [104.6, 149.2], android: [166.4] },
-  'pro-1.8.0': { ios: [98.7, 141.1], android: [162.2] },
+  'pro-1.8.1': { ios: [98.7, 141.1], android: [162.2] },
 }
 const memoryOf = (c, platform) => {
   if (!opts.sample) return c[platform]?.memory
