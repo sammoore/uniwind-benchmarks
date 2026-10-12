@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Switch apps/uniwind-pro between Uniwind Pro versions (all share one app / bundle id).
 #
-# Usage: scripts/use-pro.sh <version>          e.g. 1.0.1, 1.7.0, 1.8.0
+# Usage: scripts/use-pro.sh <version>          e.g. 1.0.1, 1.8.1
 #
 #   Installs `uniwind: npm:uniwind-pro@<version>` from npm.
 #   UNIWIND_PRO_TARBALL=/path/to/uniwind-pro-<version>.tgz installs a local build instead
@@ -33,7 +33,7 @@ EXPO_METRO_CONFIG_HIDDEN="$EXPO_METRO_CONFIG.hidden-by-use-pro"
 VERSION="${1:-}"
 
 if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
-  echo "Usage: $0 <version>   (e.g. 1.8.0; set UNIWIND_PRO_TARBALL to install a local build)" >&2
+  echo "Usage: $0 <version>   (e.g. 1.8.1; set UNIWIND_PRO_TARBALL to install a local build)" >&2
   exit 1
 fi
 

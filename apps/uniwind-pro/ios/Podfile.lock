@@ -2016,7 +2016,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - Uniwind (1.8.0):
+  - Uniwind (1.8.1):
     - hermes-engine
     - NitroModules
     - RCTRequired
@@ -2363,7 +2363,7 @@ SPEC CHECKSUMS:
   ReactNativeDependencies: 6738e602b46fd24aa453cd58267ec3bb8bf29d27
   RNReanimated: 9e7193b8ee0a064e4dafdaaae8b9ba773cd06388
   RNWorklets: ca7671eb45d2e1bffc7a31978238aa140eba1453
-  Uniwind: 125c82ccbe283f435496524bfdc88a5488e4bc73
+  Uniwind: c2bd35963b50efc0ced9909c14d873f2dc1cc8f5
   Yoga: 18b74b3ade30bebc1904004dfaceae1dd02a330a
 
 PODFILE CHECKSUM: 74b7d342a48249193f163827fe44a0f95a76cae4

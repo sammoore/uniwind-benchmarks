@@ -25,6 +25,10 @@ screen, see [Theme change](#theme-change).
 - Warm launches only: after installing an app, the first (cold) launch is discarded, then the app is terminated and relaunched 3 times
 - Memory is read from outside the app after the result, so it does not affect the timing
 - Uniwind, Uniwind Pro and NativeWind use the exact same classNames
+- Tamagui: `@tamagui/core` style props with the compiler (Metro plugin) and the opt-in native runtime
+  (`@tamagui/native-registry`, `experimental.nativeFastPath`). Every element of the screen is flattened by the compiler
+  into a plain React Native view, the `Text` elements set `lineHeight="normal"` and render template literals so the
+  compiler does not bail out to the runtime path
 
 It’s difficult to directly compare Unistyles, Uniwind, and Nativewind to StyleSheet, as it has no features, it only serves as a baseline for performance.
 
@@ -47,9 +51,10 @@ Every library uses its own way to change the theme:
 
 - Unistyles: `UnistylesRuntime.setTheme` (adaptive themes off)
 - Uniwind, Uniwind Pro: `Uniwind.setTheme`
+- Tamagui: `<Theme name>` at the root of the app, the theme lives in a store outside React, so only that root re-renders
 - NativeWind 4: `colorScheme.set`, NativeWind 5: `Appearance.setColorScheme`. Both re-render when React Native reports the new color scheme, so the measurement waits for that event before it waits for idle
 
-Unistyles and Uniwind Pro update the views from C++ without re-rendering React components, Uniwind and NativeWind re-render every styled component. StyleSheet has no themes, so it is not part of these charts. Each value is the median of 6 warm launches (10 theme changes each).
+Unistyles, Uniwind Pro and Tamagui (native runtime) update the views from C++ without re-rendering React components, Uniwind and NativeWind re-render every styled component. StyleSheet has no themes, so it is not part of these charts. Each value is the median of 6 warm launches (10 theme changes each).
 
 
 ## Running the benchmarks
@@ -77,7 +82,7 @@ The pipeline lives in `scripts/bench` (configs in `configs.json`, artifacts and 
 One build serves both scenarios, the theme scenario is picked with a launch argument.
 
 ```sh
-scripts/bench/build.sh <id>                                   # Release .app / .apk, e.g. uniwind, pro-1.8.0
+scripts/bench/build.sh <id>                                   # Release .app / .apk, e.g. uniwind, pro-1.8.1
 scripts/bench/measure.py ios <udid> <id...>                   # render scenario (and memory)
 scripts/bench/measure.py ios <udid> <id...> --scenario theme  # theme scenario, every id except stylesheet
 scripts/bench/measure.py android <serial> <id...> [--scenario theme]

@@ -103,6 +103,12 @@ fi
 
 mkdir -p "$BENCH/artifacts/ios" "$BENCH/artifacts/android" "$BENCH/logs" "$BENCH/derived-data"
 
+# Start from cold transform caches, neither is keyed by the library version:
+# - Metro's cache key ignores Babel plugin and transformer package versions (Unistyles plugin, Uniwind, Tamagui)
+# - the Tamagui compiler keeps its plans across a version bump: after 3.0.1 -> 3.0.3 a cached plan still pointed at
+#   the old @tamagui/core, found no Tamagui elements and shipped the unoptimized runtime path
+rm -rf "${TMPDIR:-/tmp}/metro-cache" "$APP/node_modules/.cache/tamagui"
+
 build_ios() {
   local dd="$BENCH/derived-data/$ID" log="$BENCH/logs/$ID-ios.log" prod
   rm -rf "$dd"

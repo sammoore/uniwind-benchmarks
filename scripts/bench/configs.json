@@ -1,6 +1,6 @@
 {
   "comment": "Benchmark configs, in sweep order. ids match results/results.json. version is read from <app>/node_modules/<versionModule>. label is a template ({library}, {version}). pro.version: the Uniwind Pro version this id stands for (switched with scripts/use-pro.sh, never by the bench scripts). pro.hideExpoMetroConfig: this Pro version needs @expo/metro-config hidden (use-pro.sh does it). scenarios: what the app can measure (render = re-mount the list, theme = switch the theme of the mounted list; StyleSheet has no themes). highlight: the config id drawn in bold in the charts, baseline: the 1.0x reference of the render time charts (both default to the latest uniwind version).",
-  "highlight": "pro-1.8.0",
+  "highlight": "pro-1.8.1",
   "baseline": "uniwind",
   "configs": [
     {
@@ -101,7 +101,7 @@
       "android": { "packageId": "com.uniwindpro" }
     },
     {
-      "id": "pro-1.8.0",
+      "id": "pro-1.8.1",
       "library": "Uniwind Pro",
       "package": "uniwind-pro",
       "label": "{library} {version}",
@@ -109,13 +109,29 @@
       "versionModule": "uniwind",
       "expo": false,
       "scenarios": ["render", "theme"],
-      "pro": { "version": "1.8.0", "hideExpoMetroConfig": false },
+      "pro": { "version": "1.8.1", "hideExpoMetroConfig": false },
       "ios": {
         "workspace": "uniwindpro",
         "scheme": "uniwindpro",
         "bundleId": "org.reactjs.native.example.uniwindpro"
       },
       "android": { "packageId": "com.uniwindpro" }
+    },
+    {
+      "id": "tamagui",
+      "library": "Tamagui",
+      "package": "@tamagui/core",
+      "label": "{library} {version}",
+      "app": "apps/tamagui",
+      "versionModule": "@tamagui/core",
+      "expo": false,
+      "scenarios": ["render", "theme"],
+      "ios": {
+        "workspace": "tamagui",
+        "scheme": "tamagui",
+        "bundleId": "org.reactjs.native.example.tamagui"
+      },
+      "android": { "packageId": "com.tamagui" }
     }
   ]
 }

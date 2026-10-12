@@ -187,19 +187,6 @@ const entryFor = (m) => {
   return entry
 }
 
-// Theme entries sit next to the render ones and leave the config's version and label alone.
-for (const m of measured.filter((m) => m.scenario === 'theme')) {
-  const config = results.configs.find((c) => c.id === m.id)
-  if (!config) throw new Error(`${m.id}: measure the render scenario first, it is not in results.json`)
-  config.theme = { ...config.theme, [m.platform]: entryFor(m) }
-  const version = m.r.build?.version
-  if (version && config.version && version !== config.version) {
-    warnings.push(
-      `${m.name}: measured ${version}, the render numbers (and label) are ${config.version}`
-    )
-  }
-}
-
 const byConfig = Map.groupBy(
   measured.filter((m) => m.scenario === 'render'),
   (m) => m.id
@@ -242,6 +229,19 @@ for (const [id, ms] of byConfig) {
     config.unreleased = true
     warnings.push(
       `${id}: not every platform comes from a published version, kept unreleased; review its note/branch`
+    )
+  }
+}
+
+// Theme entries sit next to the render ones and leave the config's version and label alone.
+for (const m of measured.filter((m) => m.scenario === 'theme')) {
+  const config = results.configs.find((c) => c.id === m.id)
+  if (!config) throw new Error(`${m.id}: measure the render scenario first, it is neither in results.json nor in the runs`)
+  config.theme = { ...config.theme, [m.platform]: entryFor(m) }
+  const version = m.r.build?.version
+  if (version && config.version && version !== config.version) {
+    warnings.push(
+      `${m.name}: measured ${version}, the render numbers (and label) are ${config.version}`
     )
   }
 }
